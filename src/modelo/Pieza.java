@@ -17,21 +17,15 @@ abstract class Pieza {
     private Point p;
     protected ImageIcon imagen;
     protected boolean esBlanca;
-    protected String id;
     protected int valor;
     
-    public Pieza(Point p, String id, boolean esBlanca) {
+    public Pieza(Point p, boolean esBlanca) {
         this.p = p;
-        this.id = id;
         this.esBlanca = esBlanca;
     }
     
     public ImageIcon getImagen() {
         return imagen;
-    }
-
-    public String getId() {
-        return id;
     }
     
     public void setPosicion(Point p) {
@@ -42,7 +36,7 @@ abstract class Pieza {
         return p;
     }
 
-    public abstract ArrayList<Point> calcularMovimientosDisponibles(ArrayList<Casilla> casillas);
+    public abstract ArrayList<Point> calcularMovimientosDisponibles(Casilla[][] casillas);
 
     public abstract void anadirColor(boolean esBlanca);
     

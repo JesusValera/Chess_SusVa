@@ -6,19 +6,17 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 import javax.swing.JPanel;
 
 public class Tablero {
 
     private Casilla[][] casillas;
     private boolean turnoBlanco;
-    //private boolean juegoNoTerminado;
+    //public boolean juegoNoTerminado;
     private final int CASILLAS = 8;
     // El id de las piezas es el mismo que el de la casilla en el que se 
     //  encuentra, el cual es equivalente a la posicion en la que se ubica
     //  tomando como id las coordenadas X e Y en el momento de su creacion.
-    private final int ID_PIEZAS_BLANCAS = 60, ID_PIEZAS_NEGRAS = 20;
     private List<Point> movimientosDisponibles;
 
     private Point posAntigua, posNueva;
@@ -78,10 +76,10 @@ public class Tablero {
 
     private void peon(Casilla bt, Point p) {
         if (posPeonNegro(p)) {
-            crearPieza(bt, new Peon(p, bt.getName(), false));
+            crearPieza(bt, new Peon(p, false));
         }
         if (posPeonBlanco(p)) {
-            crearPieza(bt, new Peon(p, bt.getName(), true));
+            crearPieza(bt, new Peon(p, true));
         }
     }
 
@@ -95,10 +93,10 @@ public class Tablero {
 
     private void torre(Casilla bt, Point p) {
         if (posTorreNegro(p)) {
-            crearPieza(bt, new Torre(p, bt.getName(), false));
+            crearPieza(bt, new Torre(p, false));
         }
         if (posTorreBlanco(p)) {
-            crearPieza(bt, new Torre(p, bt.getName(), true));
+            crearPieza(bt, new Torre(p, true));
         }
     }
 
@@ -112,10 +110,10 @@ public class Tablero {
 
     private void caballo(Casilla bt, Point p) {
         if (posCaballoNegro(p)) {
-            crearPieza(bt, new Caballo(p, bt.getName(), false));
+            crearPieza(bt, new Caballo(p, false));
         }
         if (posCaballoBlanco(p)) {
-            crearPieza(bt, new Caballo(p, bt.getName(), true));
+            crearPieza(bt, new Caballo(p, true));
         }
     }
 
@@ -129,10 +127,10 @@ public class Tablero {
 
     private void alfil(Casilla bt, Point p) {
         if (posAlfilNegro(p)) {
-            crearPieza(bt, new Alfil(p, bt.getName(), false));
+            crearPieza(bt, new Alfil(p, false));
         }
         if (posAlfilBlanco(p)) {
-            crearPieza(bt, new Alfil(p, bt.getName(), true));
+            crearPieza(bt, new Alfil(p, true));
         }
     }
 
@@ -146,10 +144,10 @@ public class Tablero {
 
     private void rey(Casilla bt, Point p) {
         if (posReyNegro(p)) {
-            crearPieza(bt, new Rey(p, bt.getName(), false));
+            crearPieza(bt, new Rey(p, false));
         }
         if (posReyBlanco(p)) {
-            crearPieza(bt, new Rey(p, bt.getName(), true));
+            crearPieza(bt, new Rey(p, true));
         }
     }
 
@@ -163,10 +161,10 @@ public class Tablero {
 
     private void reina(Casilla bt, Point p) {
         if (posReinaNegro(p)) {
-            crearPieza(bt, new Reina(p, bt.getName(), false));
+            crearPieza(bt, new Reina(p, false));
         }
         if (posReinaBlanco(p)) {
-            crearPieza(bt, new Reina(p, bt.getName(), true));
+            crearPieza(bt, new Reina(p, true));
         }
     }
 
@@ -202,11 +200,11 @@ public class Tablero {
     private MouseAdapter mouseAdapter = new MouseAdapter() {
         @Override
         public void mouseClicked(MouseEvent e) {
-            //System.out.println("Pulsada: " + ((Casilla) e.getSource()).getName());
+            System.out.println("Pulsada: " + ((Casilla) e.getSource()).getName());
             super.mouseClicked(e);
 
-            Pieza pieza = ((Casilla) e.getSource()).getPieza();
             Casilla casilla = ((Casilla) e.getSource());
+            Pieza pieza = ((Casilla) e.getSource()).getPieza();
             repintarCasillas();
             pintarCasillaSeleccionada(casilla);
 
@@ -215,7 +213,7 @@ public class Tablero {
                 comerPieza(casilla);
 
                 if (pieza != null) {
-                    if (Integer.valueOf(pieza.getId()) >= ID_PIEZAS_BLANCAS) {
+                    if (pieza.esBlanca) {
 
                         movimientosDisponibles = mostrarMovimientos(pieza);
 
@@ -234,7 +232,7 @@ public class Tablero {
                 comerPieza(casilla);
 
                 if (pieza != null) {
-                    if (Integer.valueOf(pieza.getId()) <= ID_PIEZAS_NEGRAS) {
+                    if (!pieza.esBlanca) {
 
                         movimientosDisponibles = mostrarMovimientos(pieza);
                         pintarMovimientosDisponiblesTablero(movimientosDisponibles);
@@ -303,28 +301,28 @@ public class Tablero {
     };
 
     private List<Point> mostrarMovimientos(Pieza pieza) {
-        return pieza.calcularMovimientosDisponibles(obtenerPiezas(casillas));
+        return pieza.calcularMovimientosDisponibles(casillas);
     }
 
-    private ArrayList<Casilla> obtenerPiezas(Casilla[][] casillas) {
-//        ArrayList<Pieza> piezas = new ArrayList<>();
+//    private ArrayList<Casilla> obtenerCasillas(Casilla[][] casillas) {
+////        ArrayList<Pieza> piezas = new ArrayList<>();
+////        for (int i = 0; i < casillas.length; i++) {
+////            for (int j = 0; j < casillas[i].length; j++) {
+////                if (casillas[i][j].getPieza() != null) {
+////                    piezas.add(casillas[i][j].getPieza());
+////                }
+////            }
+////        }
+////        return piezas;
+//
+//        ArrayList<Casilla> casillasList = new ArrayList<>();
 //        for (int i = 0; i < casillas.length; i++) {
 //            for (int j = 0; j < casillas[i].length; j++) {
-//                if (casillas[i][j].getPieza() != null) {
-//                    piezas.add(casillas[i][j].getPieza());
-//                }
+//                casillasList.add(casillas[i][j]);
 //            }
 //        }
-//        return piezas;
-
-        ArrayList<Casilla> casillasList = new ArrayList<>();
-        for (int i = 0; i < casillas.length; i++) {
-            for (int j = 0; j < casillas[i].length; j++) {
-                casillasList.add(casillas[i][j]);
-            }
-        }
-
-        return casillasList;
-    }
+//
+//        return casillasList;
+//    }
 
 }

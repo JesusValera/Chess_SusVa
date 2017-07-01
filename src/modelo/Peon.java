@@ -10,8 +10,8 @@ import javax.swing.ImageIcon;
  */
 public class Peon extends Pieza {
 
-    public Peon(Point p, String id, boolean esBlanco) {
-        super(p, id, esBlanco);
+    public Peon(Point p, boolean esBlanco) {
+        super(p, esBlanco);
         valor = PESO_PEON;
     }
 
@@ -24,12 +24,19 @@ public class Peon extends Pieza {
     }
 
     @Override
-    public ArrayList<Point> calcularMovimientosDisponibles(ArrayList<Casilla> casillas) {
+    public ArrayList<Point> calcularMovimientosDisponibles(Casilla[][] casillas) {
+
+        ArrayList<Casilla> casillasList = new ArrayList<>();
+        for (int i = 0; i < casillas.length; i++) {
+            for (int j = 0; j < casillas[i].length; j++) {
+                casillasList.add(casillas[i][j]);
+            }
+        }
 
         ArrayList<Pieza> piezas = new ArrayList<>();
-        for (int i = 0; i < casillas.size(); i++) {
-            if (casillas.get(i).getPieza() != null) {
-                piezas.add(casillas.get(i).getPieza());
+        for (int i = 0; i < casillasList.size(); i++) {
+            if (casillasList.get(i).getPieza() != null) {
+                piezas.add(casillasList.get(i).getPieza());
             }
         }
 

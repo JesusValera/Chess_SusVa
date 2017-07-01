@@ -7,11 +7,11 @@ public class Frame extends JFrame {
 
     private final int WIDTH = 800, HEIGHT = 800;
 
-    public Frame() {
+    public Frame() throws Exception {
         propiedades();
     }
 
-    private void propiedades() {
+    private void propiedades() throws Exception {
         this.setSize(WIDTH, HEIGHT);
         Panel panel = new Panel(this);
         this.setContentPane(panel);
@@ -20,10 +20,7 @@ public class Frame extends JFrame {
         this.setLocationRelativeTo(null);
         this.setVisible(true);
 
-        try {
-            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-        } catch (Exception e) {
-        }
+        UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
     }
 
 }

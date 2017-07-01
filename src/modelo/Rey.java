@@ -12,8 +12,8 @@ import javax.swing.ImageIcon;
  */
 public class Rey extends Pieza {
     
-    public Rey(Point p, String id, boolean esBlanco) {
-        super(p, id, esBlanco);
+    public Rey(Point p, boolean esBlanco) {
+        super(p, esBlanco);
         valor = PESO_REY;
     }
     
@@ -26,7 +26,7 @@ public class Rey extends Pieza {
     }
     
     @Override
-    public ArrayList<Point> calcularMovimientosDisponibles(ArrayList<Casilla> casillas) {
+    public ArrayList<Point> calcularMovimientosDisponibles(Casilla[][] casillas) {
         return new ArrayList<>();
     }
 }

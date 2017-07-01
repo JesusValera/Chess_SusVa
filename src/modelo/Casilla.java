@@ -1,9 +1,9 @@
 package modelo;
 
-import javax.swing.*;
+import javax.swing.JButton;
 
 /**
- * Created by jesus on 30/06/17.
+ * Created by SusVa on 30/06/17.
  */
 public class Casilla extends JButton {
 

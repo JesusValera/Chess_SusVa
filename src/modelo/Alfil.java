@@ -11,8 +11,8 @@ import javax.swing.ImageIcon;
  */
 public class Alfil extends Pieza {
     
-    public Alfil(Point p, String id, boolean esBlanco) {
-        super(p, id, esBlanco);
+    public Alfil(Point p, boolean esBlanco) {
+        super(p, esBlanco);
         valor = PESO_ALFIL;
     }
     
@@ -25,7 +25,7 @@ public class Alfil extends Pieza {
     }
     
     @Override
-    public ArrayList<Point> calcularMovimientosDisponibles(ArrayList<Casilla> casillas) {
+    public ArrayList<Point> calcularMovimientosDisponibles(Casilla[][] casillas) {
         System.out.println("Alfil");
         return new ArrayList<>();
     }

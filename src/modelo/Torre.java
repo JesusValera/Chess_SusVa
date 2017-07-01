@@ -2,6 +2,8 @@ package modelo;
 
 import java.awt.Point;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import javax.swing.ImageIcon;
 
 /**
@@ -9,8 +11,8 @@ import javax.swing.ImageIcon;
  */
 public class Torre extends Pieza {
 
-    public Torre(Point p, String id, boolean esBlanco) {
-        super(p, id, esBlanco);
+    public Torre(Point p, boolean esBlanco) {
+        super(p, esBlanco);
         valor = PESO_TORRE;
     }
 
@@ -23,55 +25,88 @@ public class Torre extends Pieza {
     }
 
     @Override
-    public ArrayList<Point> calcularMovimientosDisponibles(ArrayList<Casilla> casillas) {
+    public ArrayList<Point> calcularMovimientosDisponibles(Casilla[][] casillas) {
         ArrayList<Point> puntos = new ArrayList<>();
-        obtenerPuntosEjeX(casillas, puntos);
-        obtenerPuntosEjeY(casillas, puntos);
-        //eliminarPuntoPropio(puntos);
+        Casilla[] ejeVertical = obtenerCasillasEjeVertical(casillas, getPoint().y);
+        obtenerMovimientosEjeX(casillas[getPoint().x], puntos);
+        obtenerMovimientosEjeY(ejeVertical, puntos);
 
         return puntos;
     }
 
-    private void obtenerPuntosEjeY(ArrayList<Casilla> casillas, ArrayList<Point> puntos) {
-        for (int i = getPoint().y; i < 8; i++) {
-
-            for (Casilla casilla: casillas) {
-                if (casilla.getPieza() != null) {
-                    if (casilla.getPieza().esBlanca != this.esBlanca) {
-                        puntos.add(new Point(i, this.getPoint().y));
-                    }
-                    break;
-                } else {
-                    puntos.add(new Point(i, this.getPoint().y));
+    private Casilla[] obtenerCasillasEjeVertical(Casilla[][] casillas, int eje) {
+        Casilla[] ejeVertical = new Casilla[8];
+        for (int i = 0; i < casillas.length; i++) {
+            for (int j = 0; j < casillas[i].length; j++) {
+                if (eje == j) {
+                    ejeVertical[i] = casillas[i][j];
                 }
             }
         }
 
-        for (int i = getPoint().y; i <= 0; i--) {
+        return ejeVertical;
+    }
 
-            for (Casilla casilla: casillas) {
-                if (casilla.getPieza() != null) {
-                    if (casilla.getPieza().esBlanca != this.esBlanca) {
-                        puntos.add(new Point(i, this.getPoint().y));
-                    }
-                    break;
-                } else {
-                    puntos.add(new Point(i, this.getPoint().y));
+    private void obtenerMovimientosEjeX(Casilla[] casillas, ArrayList<Point> puntos) {
+        anadirMovimientoIzquierda(casillas, puntos);
+        anadirMovimientoDerecha(casillas, puntos);
+    }
+
+    private void anadirMovimientoIzquierda(Casilla[] casillas, ArrayList<Point> puntos) {
+        for (int i = getPoint().y - 1; i >= 0; i--) {
+            if (casillas[i].getPieza() == null) {
+                puntos.add(new Point(getPoint().x, i));
+            } else {
+                if (casillas[i].getPieza().esBlanca != this.esBlanca) {
+                    puntos.add(new Point(getPoint().x, i));
                 }
+                break;
             }
         }
     }
 
-    private void obtenerPuntosEjeX(ArrayList<Casilla> casillas, ArrayList<Point> puntos) {
-        for (int i = 0; i < 8; i++) {
-            puntos.add(new Point(this.getPoint().x, i));
+    private void anadirMovimientoDerecha(Casilla[] casillas, ArrayList<Point> puntos) {
+        for (int i = getPoint().y + 1; i < casillas.length; i++) {
+            if (casillas[i].getPieza() == null) {
+                puntos.add(new Point(getPoint().x, i));
+            } else {
+                if (casillas[i].getPieza().esBlanca != this.esBlanca) {
+                    puntos.add(new Point(getPoint().x, i));
+                }
+                break;
+            }
         }
-
-
-
     }
 
-    private void eliminarPuntoPropio(ArrayList<Point> puntos) {
-        puntos.remove(this.getPoint());
+    private void obtenerMovimientosEjeY(Casilla[] casillas, ArrayList<Point> puntos) {
+        anadirMovimientoArriba(casillas, puntos);
+        anadirMovimientoAbajo(casillas, puntos);
     }
+
+    private void anadirMovimientoArriba(Casilla[] casillas, ArrayList<Point> puntos) {
+        for (int i = getPoint().x - 1; i >= 0; i--) {
+            if (casillas[i].getPieza() == null) {
+                puntos.add(new Point(i, getPoint().y));
+            } else {
+                if (casillas[i].getPieza().esBlanca != this.esBlanca) {
+                    puntos.add(new Point(i, getPoint().y));
+                }
+                break;
+            }
+        }
+    }
+
+    private void anadirMovimientoAbajo(Casilla[] casillas, ArrayList<Point> puntos) {
+        for (int i = getPoint().x + 1; i < casillas.length; i++) {
+            if (casillas[i].getPieza() == null) {
+                puntos.add(new Point(i, getPoint().y));
+            } else {
+                if (casillas[i].getPieza().esBlanca != this.esBlanca) {
+                    puntos.add(new Point(i, getPoint().y));
+                }
+                break;
+            }
+        }
+    }
+
 }
