@@ -1,6 +1,6 @@
 package view;
 
-import modelo.Tablero;
+import modelo.Board;
 import java.awt.GridLayout;
 import javax.swing.JPanel;
 
@@ -12,7 +12,7 @@ public class Panel extends JPanel {
     
     public Panel(Frame frame) {
         properties(frame);
-        new Tablero(this);
+        new Board(this);
     }
     
     private void properties(Frame frame) {
