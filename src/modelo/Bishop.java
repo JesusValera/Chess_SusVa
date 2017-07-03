@@ -83,6 +83,7 @@ public class Bishop extends Piece {
             return;
         }
         for (; axisX <= squares.length && axisY < squares.length && keepOn; axisX++, axisY++) {
+            // TODO. falla en sig linea? NO VA BIEN
             keepOn = addSquare(boxes, squares[axisX][axisY], new Point(axisX, axisY));
         }
     }

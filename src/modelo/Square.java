@@ -1,6 +1,7 @@
 package modelo;
 
 import javax.swing.JButton;
+import java.awt.*;
 
 /**
  * Created by SusVa on 30/06/17.
@@ -8,9 +9,11 @@ import javax.swing.JButton;
 public class Square extends JButton {
 
     private Piece piece;
+    private Point position;
 
-    public Square() {
+    public Square(Point position) {
         super();
+        this.position = position;
     }
 
     public Piece getPiece() {
@@ -20,4 +23,9 @@ public class Square extends JButton {
     public void setPiece(Piece piece) {
         this.piece = piece;
     }
+
+    public Point getPosition() {
+        return position;
+    }
+
 }

@@ -6,7 +6,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.JPanel;
+import javax.swing.*;
 
 public class Board {
 
@@ -40,8 +40,7 @@ public class Board {
     }
 
     private Square configureSquare(int i, int j) {
-        Square bt = new Square();
-        bt.setName(String.valueOf(i) + String.valueOf(j));
+        Square bt = new Square(new Point(i, j));
         bt.addMouseListener(mouseAdapter);
         bt.setBackground(setBackgroundColorSquare((j + i) % 2 == 0));
         return bt;
@@ -147,54 +146,87 @@ public class Board {
     private MouseAdapter mouseAdapter = new MouseAdapter() {
         @Override
         public void mouseClicked(MouseEvent e) {
-            System.out.println("Selected: " + ((Square) e.getSource()).getName());
             super.mouseClicked(e);
+            System.out.println("Selected: " + ((Square) e.getSource()).getName());
 
             Square square = ((Square) e.getSource());
             Piece piece = square.getPiece();
             repintarCasillas();
-            pintarCasillaSeleccionada(square);
+            paintSelectedSquare(square);
+
+            System.err.println(((turnWhite) ? "White" : "Black") + " Turn");
 
             if (turnWhite) {
-                System.err.println("White Turn");
                 comerPieza(square);
-
-                if (piece == null) {
-                    return;
-                }
-                
-                if (piece.isWhite()) {
+                if (null != piece && piece.isWhite()) {
                     availableMovements = mostrarMovimientos(piece);
-
-                    // if availableMovements.get(0).getPoint() = new Point(-1, -1) -> then... TODO. - peon ultima pos
-
                     pintarMovimientosDisponiblesTablero(availableMovements);
 
                     currentPiece = piece;
-                    posOld = new Point(Integer.valueOf(square.getName().substring(0, 1)),
-                            Integer.valueOf(square.getName().substring(1)));
+                    posOld = square.getPosition();
                 }
-
             } else {
-                System.err.println("Black Turn");
                 comerPieza(square);
-
-                if (piece == null) {
-                    return;
-                }
-                
-                if (!piece.isWhite()) {
+                if (null != piece && !piece.isWhite()) {
                     availableMovements = mostrarMovimientos(piece);
                     pintarMovimientosDisponiblesTablero(availableMovements);
 
                     currentPiece = piece;
-                    posOld = new Point(Integer.valueOf(square.getName().substring(0, 1)),
-                            Integer.valueOf(square.getName().substring(1)));
+                    posOld = square.getPosition();
                 }
             }
         }
 
-        private void pintarCasillaSeleccionada(Square square) {
+        private void isPawnOnLastPosition(boolean isWhite) {
+            int position = (isWhite) ? 0 : 7;
+            Point positionPawn;
+            Piece piece = null;
+            Square[] ejeVertical = new Square[8];
+
+            for (int i = 0; i < squares.length; i++) {
+                for (int j = 0; j < squares[i].length; j++) {
+                    if (j == position)
+                        ejeVertical[i] = squares[j][i];
+                }
+            }
+            for (Square sq : ejeVertical) {
+                if (null != sq.getPiece()) {
+                    if (sq.getPiece() instanceof Pawn) {
+                        positionPawn = sq.getPosition();
+                        int rc = -1;
+                        while (rc == -1) {
+                            String[] buttons = {"Knight", "Rook", "Bishop", "Queen"};
+
+                            rc = JOptionPane.showOptionDialog(null, "Pick one of the following pieces.", "Select",
+                                    JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, buttons, buttons[2]);
+
+                            System.out.println(rc);
+                        }
+
+                        switch (rc) {
+                            case 3: // Queen
+                                piece = new Queen(positionPawn, isWhite);
+                                break;
+                            case 2: // Bishop
+                                piece = new Bishop(positionPawn, isWhite);
+                                break;
+                            case 1: // Rook
+                                piece = new Rook(positionPawn, isWhite);
+                                break;
+                            case 0: // Knight
+                                piece = new Knight(positionPawn, isWhite);
+                                break;
+                        }
+
+                        squares[positionPawn.x][positionPawn.y].setPiece(piece);
+                        putShapeOnSquare();
+                        break;
+                    }
+                }
+            }
+        }
+
+        private void paintSelectedSquare(Square square) {
             square.setBackground(new Color(0.5f, 0.5f, 0.9f, 0.3f));
         }
 
@@ -203,17 +235,18 @@ public class Board {
                 return;
             }
 
-            if (piezaCandidata(square.getName())) {
+            if (piezaCandidata(square.getPosition())) {
                 squares[posOld.x][posOld.y].setPiece(null);
                 currentPiece.setPosition(posNew);
                 square.setPiece(currentPiece);
-                turnWhite = !turnWhite;
                 currentPiece = null;
                 squares[posOld.x][posOld.y].setBackground(new Color(0.5f, 0.7f, 0.5f));
                 squares[posNew.x][posNew.y].setBackground(new Color(0.3f, 0.6f, 0.3f));
                 posOld = null;
                 posNew = null;
+                isPawnOnLastPosition(turnWhite);
                 putShapeOnSquare();
+                turnWhite = !turnWhite;
             }
         }
 
@@ -235,11 +268,11 @@ public class Board {
             }
         }
 
-        private boolean piezaCandidata(String idPieza) {
+        private boolean piezaCandidata(Point position) {
             for (Point movs : availableMovements) {
-                String positions = String.valueOf(movs.x) + String.valueOf(movs.y);
-                if (positions.equals(idPieza)) {
-                    System.out.println("Posiciones: " + positions);
+                if (movs.x == position.x && movs.y == position.y) {
+                    //if (movs.equals(position)) {
+                    System.out.println("Posiciones: " + movs.x + ", " + movs.y);
                     posNew = movs;
                     return true;
                 }
