@@ -147,7 +147,7 @@ public class Board {
         @Override
         public void mouseClicked(MouseEvent e) {
             super.mouseClicked(e);
-            System.out.println("Selected: " + ((Square) e.getSource()).getName());
+            System.out.println("Selected: " + ((Square) e.getSource()).getPosition().x + "::" + ((Square) e.getSource()).getPosition().y);
 
             Square square = ((Square) e.getSource());
             Piece piece = square.getPiece();
@@ -160,7 +160,8 @@ public class Board {
                 comerPieza(square);
                 if (null != piece && piece.isWhite()) {
                     availableMovements = mostrarMovimientos(piece);
-                    pintarMovimientosDisponiblesTablero(availableMovements);
+                    canCastlingTheKingAndTheRook(availableMovements, piece);
+                    drawAvailableMovsOnBoard(availableMovements);
 
                     currentPiece = piece;
                     posOld = square.getPosition();
@@ -169,10 +170,51 @@ public class Board {
                 comerPieza(square);
                 if (null != piece && !piece.isWhite()) {
                     availableMovements = mostrarMovimientos(piece);
-                    pintarMovimientosDisponiblesTablero(availableMovements);
+                    canCastlingTheKingAndTheRook(availableMovements, piece);
+                    drawAvailableMovsOnBoard(availableMovements);
 
                     currentPiece = piece;
                     posOld = square.getPosition();
+                }
+            }
+        }
+
+        private void canCastlingTheKingAndTheRook(List<Point> availableMovements, Piece piece) {
+            if (!(piece instanceof King)) {
+                return;
+            }
+
+            if (piece.isWhite() && piece.getPosition().x == 7) {
+                if (piece.getPosition().y == 4) {
+                    if (squares[7][5].getPiece() == null && squares[7][6].getPiece() == null) {
+                        if (squares[7][7].getPiece() instanceof Rook) {
+                            availableMovements.add(new Point(7, 6));
+                        }
+                    }
+                }
+                if (piece.getPosition().y == 3) {
+                    if (squares[7][2].getPiece() == null && squares[7][1].getPiece() == null) {
+                        if (squares[7][0].getPiece() instanceof Rook) {
+                            availableMovements.add(new Point(7, 1));
+                        }
+                    }
+                }
+            }
+
+            if (!piece.isWhite() && piece.getPosition().x == 0) {
+                if (piece.getPosition().y == 4) {
+                    if (squares[0][5].getPiece() == null && squares[0][6].getPiece() == null) {
+                        if (squares[0][7].getPiece() instanceof Rook) {
+                            availableMovements.add(new Point(0, 6));
+                        }
+                    }
+                }
+                if (piece.getPosition().y == 3) {
+                    if (squares[0][2].getPiece() == null && squares[0][1].getPiece() == null) {
+                        if (squares[0][0].getPiece() instanceof Rook) {
+                            availableMovements.add(new Point(0, 1));
+                        }
+                    }
                 }
             }
         }
@@ -181,26 +223,23 @@ public class Board {
             int position = (isWhite) ? 0 : 7;
             Point positionPawn;
             Piece piece = null;
-            Square[] ejeVertical = new Square[8];
+            Square[] verticalAxis = new Square[8];
 
             for (int i = 0; i < squares.length; i++) {
                 for (int j = 0; j < squares[i].length; j++) {
                     if (j == position)
-                        ejeVertical[i] = squares[j][i];
+                        verticalAxis[i] = squares[j][i];
                 }
             }
-            for (Square sq : ejeVertical) {
+            for (Square sq : verticalAxis) {
                 if (null != sq.getPiece()) {
                     if (sq.getPiece() instanceof Pawn) {
                         positionPawn = sq.getPosition();
                         int rc = -1;
                         while (rc == -1) {
                             String[] buttons = {"Knight", "Rook", "Bishop", "Queen"};
-
                             rc = JOptionPane.showOptionDialog(null, "Pick one of the following pieces.", "Select",
                                     JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, buttons, buttons[2]);
-
-                            System.out.println(rc);
                         }
 
                         switch (rc) {
@@ -217,7 +256,6 @@ public class Board {
                                 piece = new Knight(positionPawn, isWhite);
                                 break;
                         }
-
                         squares[positionPawn.x][positionPawn.y].setPiece(piece);
                         putShapeOnSquare();
                         break;
@@ -227,7 +265,8 @@ public class Board {
         }
 
         private void paintSelectedSquare(Square square) {
-            square.setBackground(new Color(0.5f, 0.5f, 0.9f, 0.3f));
+            Color color = new Color(0.5f, 0.5f, 0.9f, 0.3f);
+            square.setBackground(color);
         }
 
         private void comerPieza(Square square) {
@@ -239,18 +278,47 @@ public class Board {
                 squares[posOld.x][posOld.y].setPiece(null);
                 currentPiece.setPosition(posNew);
                 square.setPiece(currentPiece);
-                currentPiece = null;
                 squares[posOld.x][posOld.y].setBackground(new Color(0.5f, 0.7f, 0.5f));
                 squares[posNew.x][posNew.y].setBackground(new Color(0.3f, 0.6f, 0.3f));
                 posOld = null;
                 posNew = null;
                 isPawnOnLastPosition(turnWhite);
+
+                if (currentPiece instanceof King) {
+                    selectedSquareToDoCastling(square, turnWhite);
+                }
+
                 putShapeOnSquare();
+                currentPiece = null;
                 turnWhite = !turnWhite;
             }
         }
 
-        private void pintarMovimientosDisponiblesTablero(List<Point> availableMovements) {
+        private void selectedSquareToDoCastling(Square square, boolean isWhite) {
+            int posX = calculatePosX(isWhite);
+            if (currentPiece.getPosition().x == posX) {
+                if (square.getPosition().y == 6) {
+                    squares[posX][7].setPiece(new King(new Point(posX, 7), isWhite));
+                    squares[posX][6].setPiece(null);
+                    squares[posX][5].setPiece(new Rook(new Point(posX, 5), isWhite));
+                }
+                if (square.getPosition().y == 1) {
+                    squares[posX][0].setPiece(new King(new Point(7, 0), isWhite));
+                    squares[posX][1].setPiece(null);
+                    squares[posX][2].setPiece(new Rook(new Point(7, 2), isWhite));
+                }
+            }
+        }
+
+        private int calculatePosX(boolean isWhite) {
+            if (isWhite) {
+                return 7;
+            } else {
+                return 0;
+            }
+        }
+
+        private void drawAvailableMovsOnBoard(List<Point> availableMovements) {
             for (Point movs : availableMovements) {
                 try {
                     squares[movs.x][movs.y].setBackground(new Color(0.9f, 0.5f, 0.5f, 0.4f));
@@ -271,7 +339,6 @@ public class Board {
         private boolean piezaCandidata(Point position) {
             for (Point movs : availableMovements) {
                 if (movs.x == position.x && movs.y == position.y) {
-                    //if (movs.equals(position)) {
                     System.out.println("Posiciones: " + movs.x + ", " + movs.y);
                     posNew = movs;
                     return true;
@@ -281,7 +348,7 @@ public class Board {
         }
 
         private List<Point> mostrarMovimientos(Piece piece) {
-            return piece.calcularMovimientosDisponibles(squares);
+            return piece.estimateAvailableMovement(squares);
         }
     };
 

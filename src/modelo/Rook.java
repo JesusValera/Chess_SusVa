@@ -21,7 +21,7 @@ public class Rook extends Piece {
     }
 
     @Override
-    public ArrayList<Point> calcularMovimientosDisponibles(Square[][] squares) {
+    public ArrayList<Point> estimateAvailableMovement(Square[][] squares) {
         ArrayList<Point> puntos = new ArrayList<>();
         Square[] ejeVertical = obtenerCasillasEjeVertical(squares, getPosition().y);
         obtenerMovimientosEjeX(squares[getPosition().x], puntos);

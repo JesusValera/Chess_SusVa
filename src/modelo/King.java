@@ -22,7 +22,7 @@ public class King extends Piece {
     }
     
     @Override
-    public ArrayList<Point> calcularMovimientosDisponibles(Square[][] squares) {
+    public ArrayList<Point> estimateAvailableMovement(Square[][] squares) {
         ArrayList<Point> boxes = posicionesCandidatas(squares);
 
         return boxes;

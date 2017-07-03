@@ -23,7 +23,7 @@ public class Knight extends Piece {
     }
     
     @Override
-    public ArrayList<Point> calcularMovimientosDisponibles(Square[][] squares) {
+    public ArrayList<Point> estimateAvailableMovement(Square[][] squares) {
 
         ArrayList<Square> casillasList = new ArrayList<>();
         for (int i = 0; i < squares.length; i++) {

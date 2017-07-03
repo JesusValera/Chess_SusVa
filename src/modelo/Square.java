@@ -1,7 +1,7 @@
 package modelo;
 
 import javax.swing.JButton;
-import java.awt.*;
+import java.awt.Point;
 
 /**
  * Created by SusVa on 30/06/17.

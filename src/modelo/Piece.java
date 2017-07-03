@@ -41,6 +41,6 @@ abstract class Piece {
 
     protected abstract void setShape(boolean isWhite);
 
-    public abstract ArrayList<Point> calcularMovimientosDisponibles(Square[][] squares);
+    public abstract ArrayList<Point> estimateAvailableMovement(Square[][] squares);
 
 }

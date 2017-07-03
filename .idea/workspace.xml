@@ -1,10 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="chessGame" />
+    </artifacts-to-build>
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="24cab88d-210d-407d-8680-797473089f2a" name="Default" comment="">
+    <list default="true" id="24cab88d-210d-407d-8680-797473089f2a" name="Default" comment="Add castling. Fixed Bishop and Queen bug.">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/modelo/Bishop.java" afterPath="$PROJECT_DIR$/src/modelo/Bishop.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/modelo/Board.java" afterPath="$PROJECT_DIR$/src/modelo/Board.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/modelo/King.java" afterPath="$PROJECT_DIR$/src/modelo/King.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/modelo/Knight.java" afterPath="$PROJECT_DIR$/src/modelo/Knight.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/modelo/Pawn.java" afterPath="$PROJECT_DIR$/src/modelo/Pawn.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/modelo/Piece.java" afterPath="$PROJECT_DIR$/src/modelo/Piece.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/modelo/Queen.java" afterPath="$PROJECT_DIR$/src/modelo/Queen.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/modelo/Rook.java" afterPath="$PROJECT_DIR$/src/modelo/Rook.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/modelo/Square.java" afterPath="$PROJECT_DIR$/src/modelo/Square.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -29,8 +41,8 @@
       <file leaf-file-name="Board.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/modelo/Board.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="64" column="0" lean-forward="true" selection-start-line="64" selection-start-column="0" selection-end-line="64" selection-end-column="0" />
+            <state relative-caret-position="63">
+              <caret line="47" column="0" lean-forward="true" selection-start-line="47" selection-start-column="0" selection-end-line="47" selection-end-column="0" />
               <folding>
                 <element signature="method#createSquares#0;class#Board#0" expanded="false" />
                 <element signature="method#setBackgroundColorSquare#0;class#Board#0" expanded="false" />
@@ -41,12 +53,44 @@
                 <element signature="method#queen#0;class#Board#0" expanded="false" />
                 <element signature="method#putShapeOnSquare#0;class#Board#0" expanded="false" />
                 <element signature="method#squareHasPiece#0;class#Board#0" expanded="false" />
-                <element signature="method#isPawnOnLastPosition#0;class#4023:9577" expanded="false" />
-                <element signature="e#7377#7378#0" expanded="true" />
-                <element signature="e#7456#7457#0" expanded="true" />
-                <marker date="1499086763278" expanded="false" signature="9493:9508" ph=" { " />
-                <marker date="1499086763278" expanded="false" signature="9561:9571" ph=" }" />
+                <element signature="method#isPawnOnLastPosition#0;class#4023:12551" expanded="false" />
+                <element signature="method#selectedSquareToDoCastling#0;class#4023:12551" expanded="false" />
+                <element signature="method#calculatePosX#0;class#4023:12551" expanded="false" />
+                <element signature="e#12473#12474#0" expanded="true" />
+                <element signature="e#12544#12545#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="King.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/modelo/King.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="439">
+              <caret line="30" column="34" lean-forward="true" selection-start-line="30" selection-start-column="34" selection-end-line="30" selection-end-column="34" />
+              <folding>
+                <element signature="method#posicionesCandidatas#0;class#King#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Knight.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/modelo/Knight.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="54">
+              <caret line="25" column="53" lean-forward="false" selection-start-line="25" selection-start-column="53" selection-end-line="25" selection-end-column="53" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Piece.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/modelo/Piece.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="421">
+              <caret line="43" column="38" lean-forward="false" selection-start-line="43" selection-start-column="38" selection-end-line="43" selection-end-column="38" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -54,23 +98,10 @@
       <file leaf-file-name="Bishop.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/modelo/Bishop.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="185">
-              <caret line="84" column="95" lean-forward="true" selection-start-line="84" selection-start-column="95" selection-end-line="84" selection-end-column="95" />
+            <state relative-caret-position="395">
+              <caret line="84" column="94" lean-forward="false" selection-start-line="84" selection-start-column="94" selection-end-line="84" selection-end-column="94" />
               <folding>
                 <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Square.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/modelo/Square.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="234">
-              <caret line="15" column="33" lean-forward="false" selection-start-line="15" selection-start-column="33" selection-end-line="15" selection-end-column="33" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="docComment;class#Square#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -79,10 +110,23 @@
       <file leaf-file-name="Pawn.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/modelo/Pawn.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="181">
-              <caret line="61" column="0" lean-forward="false" selection-start-line="61" selection-start-column="0" selection-end-line="61" selection-end-column="0" />
+            <state relative-caret-position="145">
+              <caret line="23" column="0" lean-forward="true" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
               <folding>
                 <element signature="docComment;class#Pawn#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Queen.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/modelo/Queen.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="14">
+              <caret line="145" column="0" lean-forward="true" selection-start-line="145" selection-start-column="0" selection-end-line="145" selection-end-column="0" />
+              <folding>
+                <element signature="method#obtenerCasillasEjeVertical#0;class#Queen#0" expanded="false" />
+                <element signature="method#obtenerMovimientosEjeX#0;class#Queen#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -91,8 +135,8 @@
       <file leaf-file-name="Rook.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/modelo/Rook.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="32" column="72" lean-forward="true" selection-start-line="32" selection-start-column="72" selection-end-line="32" selection-end-column="72" />
+            <state relative-caret-position="108">
+              <caret line="23" column="53" lean-forward="false" selection-start-line="23" selection-start-column="53" selection-end-line="23" selection-end-column="53" />
               <folding>
                 <element signature="method#obtenerMovimientosEjeX#0;class#Rook#0" expanded="false" />
                 <element signature="method#obtenerMovimientosEjeY#0;class#Rook#0" expanded="false" />
@@ -119,6 +163,7 @@
       <find>bt</find>
       <find>peon</find>
       <find>pawnLastPosition</find>
+      <find>ejeVertical</find>
     </findStrings>
     <replaceStrings>
       <replace>casillas</replace>
@@ -132,6 +177,7 @@
       <replace>knight</replace>
       <replace>posOld</replace>
       <replace>isPawnOnLastPosition</replace>
+      <replace>verticalAxis</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -156,15 +202,15 @@
         <option value="$PROJECT_DIR$/src/modelo/Torre.java" />
         <option value="$PROJECT_DIR$/src/modelo/Alfil.java" />
         <option value="$PROJECT_DIR$/src/modelo/Caballo.java" />
-        <option value="$PROJECT_DIR$/src/modelo/Knight.java" />
-        <option value="$PROJECT_DIR$/src/modelo/Queen.java" />
-        <option value="$PROJECT_DIR$/src/modelo/King.java" />
-        <option value="$PROJECT_DIR$/src/modelo/Rook.java" />
         <option value="$PROJECT_DIR$/out/production/ChessSusVa/modelo/Bishop.class" />
-        <option value="$PROJECT_DIR$/src/modelo/Pawn.java" />
         <option value="$PROJECT_DIR$/src/modelo/Piece.java" />
+        <option value="$PROJECT_DIR$/src/modelo/Knight.java" />
+        <option value="$PROJECT_DIR$/src/modelo/Pawn.java" />
+        <option value="$PROJECT_DIR$/src/modelo/Rook.java" />
         <option value="$PROJECT_DIR$/src/modelo/Square.java" />
         <option value="$PROJECT_DIR$/src/modelo/Bishop.java" />
+        <option value="$PROJECT_DIR$/src/modelo/Queen.java" />
+        <option value="$PROJECT_DIR$/src/modelo/King.java" />
         <option value="$PROJECT_DIR$/src/modelo/Board.java" />
       </list>
     </option>
@@ -178,7 +224,7 @@
   <component name="ProjectFrameBounds">
     <option name="x" value="65" />
     <option name="y" value="24" />
-    <option name="width" value="1411" />
+    <option name="width" value="1258" />
     <option name="height" value="1056" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -288,6 +334,9 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="project.structure.last.edited" value="Artifacts" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -738,7 +787,7 @@
       <workItem from="1498990400558" duration="19579000" />
       <workItem from="1499074715291" duration="7000" />
       <workItem from="1499074738516" duration="12000" />
-      <workItem from="1499074764303" duration="9553000" />
+      <workItem from="1499074764303" duration="17085000" />
     </task>
     <task id="LOCAL-00001" summary="Rook fixed.">
       <created>1498919813344</created>
@@ -754,11 +803,18 @@
       <option name="project" value="LOCAL" />
       <updated>1499010450392</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Added pawn promotion. Fixed some bugs.">
+      <created>1499086854805</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1499086854805</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="70377000" />
+    <option name="totallyTimeSpent" value="77909000" />
   </component>
   <component name="TodoView" selected-index="4">
     <todo-panel id="selected-file">
@@ -770,7 +826,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="65" y="24" width="1411" height="1056" extended-state="4" />
+    <frame x="65" y="24" width="1258" height="1056" extended-state="4" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32985386" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -787,7 +843,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17175302" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19267516" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32881" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -813,19 +869,12 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Rook fixed." />
     <MESSAGE value="Bioshop, Queen and King working. Code partially translated to English." />
-    <option name="LAST_COMMIT_MESSAGE" value="Bioshop, Queen and King working. Code partially translated to English." />
+    <MESSAGE value="Added pawn promotion. Fixed some bugs." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added pawn promotion. Fixed some bugs." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/modelo/Bishop.java</url>
-          <line>86</line>
-          <properties />
-          <option name="timeStamp" value="71" />
-        </line-breakpoint>
-      </breakpoints>
-      <option name="time" value="74" />
+      <option name="time" value="78" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -874,11 +923,11 @@
             <element signature="method#queen#0;class#Board#0" expanded="false" />
             <element signature="method#putShapeOnSquare#0;class#Board#0" expanded="false" />
             <element signature="method#squareHasPiece#0;class#Board#0" expanded="false" />
-            <element signature="method#isPawnOnLastPosition#0;class#4023:9577" expanded="false" />
-            <element signature="e#7377#7378#0" expanded="true" />
-            <element signature="e#7456#7457#0" expanded="true" />
-            <marker date="1499086763278" expanded="false" signature="9493:9508" ph=" { " />
-            <marker date="1499086763278" expanded="false" signature="9561:9571" ph=" }" />
+            <element signature="method#isPawnOnLastPosition#0;class#4023:12551" expanded="false" />
+            <element signature="method#selectedSquareToDoCastling#0;class#4023:12551" expanded="false" />
+            <element signature="method#calculatePosX#0;class#4023:12551" expanded="false" />
+            <element signature="e#12473#12474#0" expanded="true" />
+            <element signature="e#12544#12545#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -888,7 +937,7 @@
         <state relative-caret-position="198">
           <caret line="14" column="17" lean-forward="false" selection-start-line="14" selection-start-column="17" selection-end-line="14" selection-end-column="17" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
             <element signature="method#obtenerCasillasEjeVertical#0;class#Queen#0" expanded="false" />
             <element signature="method#obtenerMovimientosEjeX#0;class#Queen#0" expanded="false" />
           </folding>
@@ -900,9 +949,9 @@
         <state relative-caret-position="198">
           <caret line="15" column="17" lean-forward="false" selection-start-line="15" selection-start-column="17" selection-end-line="15" selection-end-column="17" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#179#180#0" expanded="true" />
-            <element signature="e#213#214#0" expanded="true" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#179#180#0" expanded="false" />
+            <element signature="e#213#214#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -933,11 +982,11 @@
             <element signature="method#queen#0;class#Board#0" expanded="false" />
             <element signature="method#putShapeOnSquare#0;class#Board#0" expanded="false" />
             <element signature="method#squareHasPiece#0;class#Board#0" expanded="false" />
-            <element signature="method#isPawnOnLastPosition#0;class#4023:9577" expanded="false" />
-            <element signature="e#7377#7378#0" expanded="true" />
-            <element signature="e#7456#7457#0" expanded="true" />
-            <marker date="1499086763278" expanded="false" signature="9493:9508" ph=" { " />
-            <marker date="1499086763278" expanded="false" signature="9561:9571" ph=" }" />
+            <element signature="method#isPawnOnLastPosition#0;class#4023:12551" expanded="false" />
+            <element signature="method#selectedSquareToDoCastling#0;class#4023:12551" expanded="false" />
+            <element signature="method#calculatePosX#0;class#4023:12551" expanded="false" />
+            <element signature="e#12473#12474#0" expanded="true" />
+            <element signature="e#12544#12545#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -977,10 +1026,10 @@
         <state relative-caret-position="468">
           <caret line="29" column="28" lean-forward="false" selection-start-line="29" selection-start-column="28" selection-end-line="29" selection-end-column="28" />
           <folding>
-            <element signature="e#208#209#0" expanded="true" />
-            <element signature="e#242#243#0" expanded="true" />
-            <element signature="e#1943#1944#0" expanded="true" />
-            <element signature="e#2001#2002#0" expanded="true" />
+            <element signature="e#208#209#0" expanded="false" />
+            <element signature="e#242#243#0" expanded="false" />
+            <element signature="e#1938#1939#0" expanded="false" />
+            <element signature="e#1996#1997#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1010,7 +1059,7 @@
         <state relative-caret-position="432">
           <caret line="27" column="86" lean-forward="false" selection-start-line="27" selection-start-column="86" selection-end-line="27" selection-end-column="86" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
             <element signature="method#obtenerCasillasEjeVertical#0;class#Queen#0" expanded="false" />
             <element signature="method#obtenerMovimientosEjeX#0;class#Queen#0" expanded="false" />
           </folding>
@@ -1022,9 +1071,9 @@
         <state relative-caret-position="252">
           <caret line="18" column="4" lean-forward="true" selection-start-line="18" selection-start-column="4" selection-end-line="18" selection-end-column="4" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#179#180#0" expanded="true" />
-            <element signature="e#213#214#0" expanded="true" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#179#180#0" expanded="false" />
+            <element signature="e#213#214#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1043,11 +1092,11 @@
             <element signature="method#queen#0;class#Board#0" expanded="false" />
             <element signature="method#putShapeOnSquare#0;class#Board#0" expanded="false" />
             <element signature="method#squareHasPiece#0;class#Board#0" expanded="false" />
-            <element signature="method#isPawnOnLastPosition#0;class#4023:9577" expanded="false" />
-            <element signature="e#7377#7378#0" expanded="true" />
-            <element signature="e#7456#7457#0" expanded="true" />
-            <marker date="1499086763278" expanded="false" signature="9493:9508" ph=" { " />
-            <marker date="1499086763278" expanded="false" signature="9561:9571" ph=" }" />
+            <element signature="method#isPawnOnLastPosition#0;class#4023:12551" expanded="false" />
+            <element signature="method#selectedSquareToDoCastling#0;class#4023:12551" expanded="false" />
+            <element signature="method#calculatePosX#0;class#4023:12551" expanded="false" />
+            <element signature="e#12473#12474#0" expanded="true" />
+            <element signature="e#12544#12545#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1087,10 +1136,10 @@
         <state relative-caret-position="468">
           <caret line="29" column="28" lean-forward="true" selection-start-line="29" selection-start-column="28" selection-end-line="29" selection-end-column="28" />
           <folding>
-            <element signature="e#208#209#0" expanded="true" />
-            <element signature="e#242#243#0" expanded="true" />
-            <element signature="e#1943#1944#0" expanded="true" />
-            <element signature="e#2001#2002#0" expanded="true" />
+            <element signature="e#208#209#0" expanded="false" />
+            <element signature="e#242#243#0" expanded="false" />
+            <element signature="e#1938#1939#0" expanded="false" />
+            <element signature="e#1996#1997#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1120,7 +1169,7 @@
         <state relative-caret-position="432">
           <caret line="27" column="86" lean-forward="false" selection-start-line="27" selection-start-column="86" selection-end-line="27" selection-end-column="86" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
             <element signature="method#obtenerCasillasEjeVertical#0;class#Queen#0" expanded="false" />
             <element signature="method#obtenerMovimientosEjeX#0;class#Queen#0" expanded="false" />
           </folding>
@@ -1132,9 +1181,9 @@
         <state relative-caret-position="396">
           <caret line="26" column="4" lean-forward="true" selection-start-line="26" selection-start-column="4" selection-end-line="26" selection-end-column="4" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#179#180#0" expanded="true" />
-            <element signature="e#213#214#0" expanded="true" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#179#180#0" expanded="false" />
+            <element signature="e#213#214#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1153,11 +1202,11 @@
             <element signature="method#queen#0;class#Board#0" expanded="false" />
             <element signature="method#putShapeOnSquare#0;class#Board#0" expanded="false" />
             <element signature="method#squareHasPiece#0;class#Board#0" expanded="false" />
-            <element signature="method#isPawnOnLastPosition#0;class#4023:9577" expanded="false" />
-            <element signature="e#7377#7378#0" expanded="true" />
-            <element signature="e#7456#7457#0" expanded="true" />
-            <marker date="1499086763278" expanded="false" signature="9493:9508" ph=" { " />
-            <marker date="1499086763278" expanded="false" signature="9561:9571" ph=" }" />
+            <element signature="method#isPawnOnLastPosition#0;class#4023:12551" expanded="false" />
+            <element signature="method#selectedSquareToDoCastling#0;class#4023:12551" expanded="false" />
+            <element signature="method#calculatePosX#0;class#4023:12551" expanded="false" />
+            <element signature="e#12473#12474#0" expanded="true" />
+            <element signature="e#12544#12545#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1185,10 +1234,10 @@
         <state relative-caret-position="792">
           <caret line="47" column="61" lean-forward="true" selection-start-line="47" selection-start-column="61" selection-end-line="47" selection-end-column="61" />
           <folding>
-            <element signature="e#208#209#0" expanded="true" />
-            <element signature="e#242#243#0" expanded="true" />
-            <element signature="e#1943#1944#0" expanded="true" />
-            <element signature="e#2001#2002#0" expanded="true" />
+            <element signature="e#208#209#0" expanded="false" />
+            <element signature="e#242#243#0" expanded="false" />
+            <element signature="e#1938#1939#0" expanded="false" />
+            <element signature="e#1996#1997#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1218,7 +1267,7 @@
         <state relative-caret-position="216">
           <caret line="15" column="27" lean-forward="false" selection-start-line="15" selection-start-column="27" selection-end-line="15" selection-end-column="27" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
             <element signature="method#obtenerCasillasEjeVertical#0;class#Queen#0" expanded="false" />
             <element signature="method#obtenerMovimientosEjeX#0;class#Queen#0" expanded="false" />
           </folding>
@@ -1230,9 +1279,9 @@
         <state relative-caret-position="342">
           <caret line="23" column="51" lean-forward="false" selection-start-line="23" selection-start-column="51" selection-end-line="23" selection-end-column="51" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#179#180#0" expanded="true" />
-            <element signature="e#213#214#0" expanded="true" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#179#180#0" expanded="false" />
+            <element signature="e#213#214#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1287,43 +1336,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/modelo/King.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-245">
-          <caret line="9" column="13" lean-forward="false" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#179#180#0" expanded="true" />
-            <element signature="e#213#214#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/modelo/Knight.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-119">
-          <caret line="53" column="0" lean-forward="true" selection-start-line="53" selection-start-column="0" selection-end-line="53" selection-end-column="0" />
-          <folding>
-            <element signature="e#208#209#0" expanded="true" />
-            <element signature="e#242#243#0" expanded="true" />
-            <element signature="e#1943#1944#0" expanded="true" />
-            <element signature="e#2001#2002#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/modelo/Queen.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2405">
-          <caret line="9" column="13" lean-forward="false" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#obtenerCasillasEjeVertical#0;class#Queen#0" expanded="false" />
-            <element signature="method#obtenerMovimientosEjeX#0;class#Queen#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/out/production/ChessSusVa/modelo/Board.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1080">
@@ -1345,18 +1357,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/modelo/Piece.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="576">
-          <caret line="44" column="0" lean-forward="true" selection-start-line="44" selection-start-column="0" selection-end-line="44" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/modelo/Rook.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="32" column="72" lean-forward="true" selection-start-line="32" selection-start-column="72" selection-end-line="32" selection-end-column="72" />
+        <state relative-caret-position="108">
+          <caret line="23" column="53" lean-forward="false" selection-start-line="23" selection-start-column="53" selection-end-line="23" selection-end-column="53" />
           <folding>
             <element signature="method#obtenerMovimientosEjeX#0;class#Rook#0" expanded="false" />
             <element signature="method#obtenerMovimientosEjeY#0;class#Rook#0" expanded="false" />
@@ -1364,20 +1368,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/modelo/Pawn.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="181">
-          <caret line="61" column="0" lean-forward="false" selection-start-line="61" selection-start-column="0" selection-end-line="61" selection-end-column="0" />
-          <folding>
-            <element signature="docComment;class#Pawn#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/modelo/Square.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="15" column="33" lean-forward="false" selection-start-line="15" selection-start-column="33" selection-end-line="15" selection-end-column="33" />
+        <state relative-caret-position="72">
+          <caret line="4" column="0" lean-forward="true" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="docComment;class#Square#0" expanded="false" />
@@ -1385,20 +1379,67 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/modelo/Pawn.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="145">
+          <caret line="23" column="0" lean-forward="true" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
+          <folding>
+            <element signature="docComment;class#Pawn#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/modelo/Bishop.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="185">
-          <caret line="84" column="95" lean-forward="true" selection-start-line="84" selection-start-column="95" selection-end-line="84" selection-end-column="95" />
+        <state relative-caret-position="395">
+          <caret line="84" column="94" lean-forward="false" selection-start-line="84" selection-start-column="94" selection-end-line="84" selection-end-column="94" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/modelo/Queen.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="14">
+          <caret line="145" column="0" lean-forward="true" selection-start-line="145" selection-start-column="0" selection-end-line="145" selection-end-column="0" />
+          <folding>
+            <element signature="method#obtenerCasillasEjeVertical#0;class#Queen#0" expanded="false" />
+            <element signature="method#obtenerMovimientosEjeX#0;class#Queen#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/modelo/Piece.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="421">
+          <caret line="43" column="38" lean-forward="false" selection-start-line="43" selection-start-column="38" selection-end-line="43" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/modelo/Knight.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="54">
+          <caret line="25" column="53" lean-forward="false" selection-start-line="25" selection-start-column="53" selection-end-line="25" selection-end-column="53" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/modelo/King.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="439">
+          <caret line="30" column="34" lean-forward="true" selection-start-line="30" selection-start-column="34" selection-end-line="30" selection-end-column="34" />
+          <folding>
+            <element signature="method#posicionesCandidatas#0;class#King#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/modelo/Board.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="64" column="0" lean-forward="true" selection-start-line="64" selection-start-column="0" selection-end-line="64" selection-end-column="0" />
+        <state relative-caret-position="63">
+          <caret line="47" column="0" lean-forward="true" selection-start-line="47" selection-start-column="0" selection-end-line="47" selection-end-column="0" />
           <folding>
             <element signature="method#createSquares#0;class#Board#0" expanded="false" />
             <element signature="method#setBackgroundColorSquare#0;class#Board#0" expanded="false" />
@@ -1409,14 +1450,102 @@
             <element signature="method#queen#0;class#Board#0" expanded="false" />
             <element signature="method#putShapeOnSquare#0;class#Board#0" expanded="false" />
             <element signature="method#squareHasPiece#0;class#Board#0" expanded="false" />
-            <element signature="method#isPawnOnLastPosition#0;class#4023:9577" expanded="false" />
-            <element signature="e#7377#7378#0" expanded="true" />
-            <element signature="e#7456#7457#0" expanded="true" />
-            <marker date="1499086763278" expanded="false" signature="9493:9508" ph=" { " />
-            <marker date="1499086763278" expanded="false" signature="9561:9571" ph=" }" />
+            <element signature="method#isPawnOnLastPosition#0;class#4023:12551" expanded="false" />
+            <element signature="method#selectedSquareToDoCastling#0;class#4023:12551" expanded="false" />
+            <element signature="method#calculatePosX#0;class#4023:12551" expanded="false" />
+            <element signature="e#12473#12474#0" expanded="true" />
+            <element signature="e#12544#12545#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ArtifactsStructureConfigurable.UI">
+        <settings>
+          <artifact-editor />
+          <last-edited>chessGame</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="FacetStructureConfigurable.UI">
+        <settings>
+          <last-edited>No facets are configured</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="GlobalLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="JdkListConfigurable.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ModuleStructureConfigurable.UI">
+        <settings>
+          <last-edited>ChessSusVa</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+                <option value="0.6" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectJDKs.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
   </component>
 </project>

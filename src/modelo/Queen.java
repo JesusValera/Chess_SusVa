@@ -22,7 +22,7 @@ public class Queen extends Piece {
     }
     
     @Override
-    public ArrayList<Point> calcularMovimientosDisponibles(Square[][] squares) {
+    public ArrayList<Point> estimateAvailableMovement(Square[][] squares) {
 
         ArrayList<Point> boxes = new ArrayList<>();
         Square[] ejeVertical = obtenerCasillasEjeVertical(squares, getPosition().y);
@@ -161,7 +161,7 @@ public class Queen extends Piece {
         if (!piezaEstaEnBorde(axisX, axisY, squares.length)) {
             return;
         }
-        for (; axisX <= squares.length && axisY < squares.length && keepOn; axisX++, axisY++) {
+        for (; axisX < squares.length && axisY < squares.length && keepOn; axisX++, axisY++) {
             keepOn = addSquare(boxes, squares[axisX][axisY], new Point(axisX, axisY));
         }
     }

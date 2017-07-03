@@ -23,7 +23,7 @@ public class Pawn extends Piece {
     }
 
     @Override
-    public ArrayList<Point> calcularMovimientosDisponibles(Square[][] squares) {
+    public ArrayList<Point> estimateAvailableMovement(Square[][] squares) {
         ArrayList<Point> posiblesMovimientos = new ArrayList<>();
         Point posicionCandidata, posicionCandidataX2,
                 posicionCandidataIzq, posicionCandidataDer;

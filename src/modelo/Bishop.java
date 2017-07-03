@@ -21,7 +21,7 @@ public class Bishop extends Piece {
     }
 
     @Override
-    public ArrayList<Point> calcularMovimientosDisponibles(Square[][] squares) {
+    public ArrayList<Point> estimateAvailableMovement(Square[][] squares) {
 
         ArrayList<Point> boxes = new ArrayList<>();
 
@@ -82,8 +82,7 @@ public class Bishop extends Piece {
         if (!piezaEstaEnBorde(axisX, axisY, squares.length)) {
             return;
         }
-        for (; axisX <= squares.length && axisY < squares.length && keepOn; axisX++, axisY++) {
-            // TODO. falla en sig linea? NO VA BIEN
+        for (; axisX < squares.length && axisY < squares.length && keepOn; axisX++, axisY++) {
             keepOn = addSquare(boxes, squares[axisX][axisY], new Point(axisX, axisY));
         }
     }
